@@ -52,7 +52,6 @@ public class Master extends Thread{
             taskBag.clear();
             // Assign force jobs to workers (check startstop)
             log("creating force tasks");
-            // todo decide if calculate everything or split task
             for (final Body body : this.envModel.getBodies()) {
                 //this.startStopWaiter.startGateWait();
                 final BodyForceUpdater bodyForceUpdater = new BodyForceUpdater(this.envModel.getBodiesCount() - 1);
