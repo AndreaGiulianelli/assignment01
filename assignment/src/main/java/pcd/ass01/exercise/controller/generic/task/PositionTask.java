@@ -20,7 +20,7 @@ public class PositionTask implements Task{
     public void execute(StartStopWaiter startStopWaiter) {
         // Check if the worker that execute the task can effectively continue.
         startStopWaiter.startGateWait();
-        int dt = this.envModel.getDeltaTime();
+        double dt = this.envModel.getDeltaTime();
         this.body.updateVelocity(dt);
         this.body.updatePos(dt);
         this.body.checkAndSolveBoundaryCollision(this.envModel.getBounds());

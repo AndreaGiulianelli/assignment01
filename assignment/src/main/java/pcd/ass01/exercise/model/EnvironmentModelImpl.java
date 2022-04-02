@@ -8,10 +8,11 @@ import java.util.Random;
  * Model not needed to be a monitor
  */
 public class EnvironmentModelImpl implements EnvironmentModel{
-    private static final int DELTA_TIME = 0;
+    private static final double DELTA_TIME = 0.001;
     private final Boundary boundary;
     private List<Body> bodies;
     private int iteration;
+    private double vt = 0; // Virtual time
 
     public EnvironmentModelImpl(double x0, double y0, double x1, double y1) {
         this.boundary = new Boundary(x0, y0, x1, y1);
@@ -40,6 +41,7 @@ public class EnvironmentModelImpl implements EnvironmentModel{
     @Override
     public void incrementIterations() {
         this.iteration++;
+        this.vt += EnvironmentModelImpl.DELTA_TIME;
     }
 
     @Override
@@ -63,8 +65,13 @@ public class EnvironmentModelImpl implements EnvironmentModel{
     }
 
     @Override
-    public int getDeltaTime() {
+    public double getDeltaTime() {
         return EnvironmentModelImpl.DELTA_TIME;
+    }
+
+    @Override
+    public double getVirtualTime() {
+        return this.vt;
     }
 
     @Override

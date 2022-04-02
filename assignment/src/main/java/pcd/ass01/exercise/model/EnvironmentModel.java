@@ -36,7 +36,12 @@ public interface EnvironmentModel {
     /**
      * Get dt in our virtual time
      */
-    int getDeltaTime();
+    double getDeltaTime();
+    /**
+     * Get the virtual time of the simulation
+     * @return the virtual time
+     */
+    double getVirtualTime();
     /**
      * Get the actual iteration number
      * @return the iteration number
