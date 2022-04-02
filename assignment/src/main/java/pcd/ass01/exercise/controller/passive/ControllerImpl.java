@@ -8,10 +8,10 @@ import pcd.ass01.exercise.view.SimulationView;
  */
 public class ControllerImpl implements Controller{
     private final EnvironmentModel model;
-    private final StartStop startStop;
+    private final StartStopNotifier startStop;
     private SimulationView view;
 
-    public ControllerImpl(final EnvironmentModel model, final StartStop startStop) {
+    public ControllerImpl(final EnvironmentModel model, final StartStopNotifier startStop) {
         this.model = model;
         this.startStop = startStop;
     }

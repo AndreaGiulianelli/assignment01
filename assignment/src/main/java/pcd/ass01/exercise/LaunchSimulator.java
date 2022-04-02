@@ -1,15 +1,14 @@
 package pcd.ass01.exercise;
 
 import pcd.ass01.exercise.controller.active.Master;
-import pcd.ass01.exercise.controller.passive.Controller;
-import pcd.ass01.exercise.controller.passive.ControllerImpl;
-import pcd.ass01.exercise.controller.passive.StartStop;
+import pcd.ass01.exercise.controller.passive.*;
 import pcd.ass01.exercise.model.EnvironmentModel;
 import pcd.ass01.exercise.model.EnvironmentModelImpl;
 import pcd.ass01.exercise.view.SimulationView;
 import pcd.ass01.exercise.view.SimulationViewImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -19,18 +18,21 @@ public class LaunchSimulator {
     public static void main(String... args) {
         // Initialize model
         final EnvironmentModel model = new EnvironmentModelImpl(-6.0, -6.0, 6.0, 6.0);
-        model.initialize(List.of(1, 2));
+        model.initialize(Stream.iterate(10, i -> 10).limit(1000).collect(Collectors.toList()));
         // Initialize startstop
-        final StartStop startStop = new StartStop();
+        //final StartStopNotifier startStop = new StartStop();
+        final StartStopNotifier startStop = new FakeStartStop();
         // Initialize controller (passive part)
         final Controller controller = new ControllerImpl(model, startStop);
         // Initialize view
-        final SimulationView view = new SimulationViewImpl(controller);
+        final SimulationView view = new SimulationViewImpl(620, 620, controller);
         // Set view in the controller
         controller.setView(view);
         // Initialize controller (active part)
-        new Master(2, model, startStop, view).start();
+        new Master(50000, model, startStop, view).start();
         startStop.notifyStart();
+
+        view.display();
     }
 
 }

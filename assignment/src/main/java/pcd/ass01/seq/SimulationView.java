@@ -57,7 +57,7 @@ public class SimulationView {
         
         public void display(ArrayList<Body> bodies, double vt, long iter, Boundary bounds){
         	try {
-	        	SwingUtilities.invokeAndWait(() -> {
+	        	SwingUtilities.invokeLater(() -> {
 	        		panel.display(bodies, vt, iter, bounds);
 	            	repaint();
 	        	});

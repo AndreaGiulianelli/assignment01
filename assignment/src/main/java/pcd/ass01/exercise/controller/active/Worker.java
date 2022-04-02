@@ -1,7 +1,6 @@
 package pcd.ass01.exercise.controller.active;
 
 import pcd.ass01.exercise.controller.generic.task.Task;
-import pcd.ass01.exercise.controller.passive.CyclicLatch;
 import pcd.ass01.exercise.controller.passive.StartStopWaiter;
 import pcd.ass01.exercise.controller.passive.TaskBag;
 
@@ -10,7 +9,7 @@ import pcd.ass01.exercise.controller.passive.TaskBag;
  * Task strategy is passed.
  */
 public class Worker extends Thread{
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private final TaskBag taskBag;
     private final StartStopWaiter startStopWaiter;
 

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Master extends Thread{
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private final EnvironmentModel envModel;
     private final StartStopWaiter startStopWaiter;
     private final SimulationView simulationView;
@@ -52,6 +52,7 @@ public class Master extends Thread{
             taskBag.clear();
             // Assign force jobs to workers (check startstop)
             log("creating force tasks");
+            // todo decide if calculate everything or split task
             for (final Body body : this.envModel.getBodies()) {
                 //this.startStopWaiter.startGateWait();
                 final BodyForceUpdater bodyForceUpdater = new BodyForceUpdater(this.envModel.getBodiesCount() - 1);
@@ -80,8 +81,7 @@ public class Master extends Thread{
             if(this.startStopWaiter.isRunning()) {
                 log("send iteration to GUI");
                 final List<P2d> posSafeCopy = this.envModel.getBodies().stream().map(b -> new P2d(b.getPos())).collect(Collectors.toList());
-                // todo: send view
-                // this.simulationView
+                this.simulationView.update(posSafeCopy, this.envModel.getVirtualTime(), this.envModel.getIterationCount(), this.envModel.getBounds());
             } else {
                 // Send info to GUI that is stopped
                 log("stopped");
