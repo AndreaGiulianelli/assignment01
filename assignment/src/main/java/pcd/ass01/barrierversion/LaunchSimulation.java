@@ -19,8 +19,8 @@ public class LaunchSimulation {
         final EnvironmentModel model = new EnvironmentModelImpl(-6, -6, 6, 6);
         model.initialize(iterations, Stream.iterate(10, i -> 10).limit(nBodies).collect(Collectors.toList()));
         // Initialize startstop
-        final StartAndStopNotifier startAndStopNotifier = new FakeStartStop();
-        // final StartAndStopNotifier startAndStopNotifier = new StartStop();
+        // final StartAndStopNotifier startAndStopNotifier = new FakeStartStop();
+        final StartAndStopNotifier startAndStopNotifier = new StartStop();
         // Initialize controller
         final Controller controller = new ControllerImpl(model, startAndStopNotifier);
         // Initialize view
@@ -29,7 +29,6 @@ public class LaunchSimulation {
         controller.setView(view);
         // Initialize controller active part
         new Master(model, view, startAndStopNotifier).start();
-        startAndStopNotifier.notifyStart();
 
         view.display();
     }

@@ -22,7 +22,7 @@ public class VisualiserPanel extends JPanel implements KeyListener {
 
     public VisualiserPanel(int w, int h){
         setSize(w,h);
-        dx = w/2 - 20;
+        dx = w/2;
         dy = h/2 - 20;
         this.addKeyListener(this);
         setFocusable(true);

@@ -26,4 +26,9 @@ public class SimulationViewImpl implements SimulationView{
     public synchronized void update(final List<P2d> positions, final double vt, final long iter, final Boundary boundary) {
         this.viewer.update(positions, vt, iter, boundary);
     }
+
+    @Override
+    public void simulationEnd() {
+        this.viewer.simulationEnd();
+    }
 }

@@ -18,4 +18,8 @@ public interface SimulationView {
      * @param boundary boundary of the environment
      */
     void update(List<P2d> positions, double vt, long iter, Boundary boundary);
+    /**
+     * Method to inform the view that the simulation is ended
+     */
+    void simulationEnd();
 }

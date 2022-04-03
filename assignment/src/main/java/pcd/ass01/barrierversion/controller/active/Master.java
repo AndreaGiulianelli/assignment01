@@ -87,6 +87,8 @@ public class Master extends Thread{
         } catch (InterruptedException e) {}
         long t1 = System.currentTimeMillis();
         System.out.println("Time: " + (t1 - t0) + "ms");
+        // Inform the view
+        this.view.simulationEnd();
         // Interrupt all the workers in order to complete
         for(final Worker w: workerList) {
             w.interrupt();
