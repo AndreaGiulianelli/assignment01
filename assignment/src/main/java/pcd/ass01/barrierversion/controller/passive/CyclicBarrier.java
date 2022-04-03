@@ -23,19 +23,22 @@ public class CyclicBarrier {
         this.nRemainedParticipants--;
         if (this.nRemainedParticipants == 0) {
             this.notifyAll();
-            this.awakeAfterWait++;
         } else {
             while(this.nRemainedParticipants != 0) {
                 this.wait();
             }
-            this.awakeAfterWait++;
-            // Check that is the last to awake after the wait
-            if (this.awakeAfterWait == this.originalParticipants) {
-                // The last to awake will reset the barrier
-                this.nRemainedParticipants = this.originalParticipants;
-                this.awakeAfterWait = 0;
-                this.notifyAll(); // Notify process that are trying to enter monitor during the reset.
-            }
+        }
+        this.awakeAfterWait++;
+        this.checkAwake();
+    }
+
+    private void checkAwake() {
+        // Check that is the last to awake after the wait
+        if (this.awakeAfterWait == this.originalParticipants) {
+            // The last to awake will reset the barrier
+            this.nRemainedParticipants = this.originalParticipants;
+            this.awakeAfterWait = 0;
+            this.notifyAll(); // Notify process that are trying to enter monitor during the reset.
         }
     }
 }
