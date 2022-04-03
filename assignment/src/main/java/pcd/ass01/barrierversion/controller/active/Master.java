@@ -76,11 +76,13 @@ public class Master extends Thread{
                 log("wait iteration to complete");
                 iterationCompletedLatch.await();
                 log("iteration completed, save consistent results");
-                // save position in order to be consistent in the visualization
-                final List<P2d> posSafeCopy = this.model.getBodies().stream().map(b -> new P2d(b.getPos())).collect(Collectors.toList());
-                // display
-                log("send iteration to GUI");
-                this.view.update(posSafeCopy, this.model.getVirtualTime(), this.model.getIterationCount(), boundary);
+                if(this.view != null) {
+                    // save position in order to be consistent in the visualization
+                    final List<P2d> posSafeCopy = this.model.getBodies().stream().map(b -> new P2d(b.getPos())).collect(Collectors.toList());
+                    // display
+                    log("send iteration to GUI");
+                    this.view.update(posSafeCopy, this.model.getVirtualTime(), this.model.getIterationCount(), boundary);
+                }
                 // increase the iteration count
                 this.model.incrementIterations();
             }
@@ -88,7 +90,9 @@ public class Master extends Thread{
         long t1 = System.currentTimeMillis();
         System.out.println("Time: " + (t1 - t0) + "ms");
         // Inform the view
-        this.view.simulationEnd();
+        if (view != null) {
+            this.view.simulationEnd();
+        }
         // Interrupt all the workers in order to complete
         for(final Worker w: workerList) {
             w.interrupt();
