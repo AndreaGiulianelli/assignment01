@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Worker extends Thread{
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private final EnvironmentModel envModel;
     private final StartAndStopListener startAndStopListener;
     private final CyclicBarrier posBarrier;

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Master extends Thread{
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private final EnvironmentModel model;
     private final SimulationView view;
     private final StartAndStopListener startAndStopListener;
@@ -63,7 +63,6 @@ public class Master extends Thread{
         lastWorker.start();
 
         // Caching values
-        final double dt = this.model.getDeltaTime();
         final Boundary boundary = this.model.getBounds();
         long t0 = System.currentTimeMillis();
         try {
@@ -81,7 +80,7 @@ public class Master extends Thread{
                 final List<P2d> posSafeCopy = this.model.getBodies().stream().map(b -> new P2d(b.getPos())).collect(Collectors.toList());
                 // display
                 log("send iteration to GUI");
-                this.view.update(posSafeCopy, dt, this.model.getIterationCount(), boundary);
+                this.view.update(posSafeCopy, this.model.getVirtualTime(), this.model.getIterationCount(), boundary);
                 // increase the iteration count
                 this.model.incrementIterations();
             }
