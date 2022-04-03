@@ -36,3 +36,13 @@ loop:
 ``` 
 
 ## Verifiche
+```
+[](-(M5/\(W3\/W6)))
+[](-(W3/\W6))
+[](<>W1)
+[](W1=>(<>W7))
+[](M3=>(<>M2))
+```
+
+## Note
+Al fine di poter descrivere le barriere attraverso le reti di petri ho provveduto a scomporla in due azioni atomiche hit and wait, controllate però da **barrier count** e da **barrier handler** in modo tale da non avere "race condition" nella rete di petri.
