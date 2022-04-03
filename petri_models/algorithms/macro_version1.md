@@ -1,5 +1,5 @@
-# Algoritmo macro
-**Algoritmo associato alla Petri Net di nome: macro.ndr**
+# Algoritmo macro versione 1
+**Algoritmo associato alla Petri Net di nome: macro_version1.ndr**
 
 Supponiamo un sistema in cui siano presenti 3 Worker + il Master
 ## Common
@@ -13,7 +13,7 @@ l = Latch(nWorkers)
 ```
 
     foreach worker
-m0: createAndStartWorker
+m0: createAndStartWorker()
     end foreach
 
 loop:
@@ -30,8 +30,8 @@ loop:
 
 ## Worker
 ```
-loop:
     w0: awaitToBeStart()
+loop:
     w1: getTask()
     w2: executeTask()
     w3: notify(l)
