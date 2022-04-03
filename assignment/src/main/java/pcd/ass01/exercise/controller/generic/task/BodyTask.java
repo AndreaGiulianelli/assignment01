@@ -32,12 +32,12 @@ public class BodyTask implements Task{
         startStopWaiter.startGateWait();
         // Create task to calculate friction force
         final Task frictionForceTask = new FrictionTask(this.body, this.bodyForceUpdater, this.latch);
-        this.taskBag.addTask(frictionForceTask);
+        this.taskBag.addForceTask(frictionForceTask);
 
         // Create task to calculate repulsive force
         for(Body by : this.envModel.getBodies()) {
             final Task repulsiveForceTask = new RepulsiveTask(this.body, by, this.bodyForceUpdater, this.latch);
-            this.taskBag.addTask(repulsiveForceTask);
+            this.taskBag.addForceTask(repulsiveForceTask);
         }
     }
 }

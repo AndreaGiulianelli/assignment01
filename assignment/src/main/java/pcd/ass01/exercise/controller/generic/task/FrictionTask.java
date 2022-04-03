@@ -23,7 +23,7 @@ public class FrictionTask implements Task{
         // Update friction and if the calculation of all forces for the body is completed call countDown on the latch
         if (this.bodyForceUpdater.updateFriction(this.body.getCurrentFrictionForce())) {
             // We have all the force, we can safely update the acceleration
-            this.body.updateAcceleration(this.bodyForceUpdater.getTotalForce());
+            this.body.updateAcceleration(this.bodyForceUpdater.getTotalForceAndReset());
             // Inform the latch that we have completed a body until acceleration
             this.latch.countDown();
         }

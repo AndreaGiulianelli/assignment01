@@ -18,7 +18,7 @@ public class LaunchSimulator {
     public static void main(String... args) {
         // Initialize model
         final EnvironmentModel model = new EnvironmentModelImpl(-6.0, -6.0, 6.0, 6.0);
-        model.initialize(Stream.iterate(10, i -> 10).limit(1000).collect(Collectors.toList()));
+        model.initialize(Stream.iterate(10, i -> 10).limit(500).collect(Collectors.toList()));
         // Initialize startstop
         //final StartStopNotifier startStop = new StartStop();
         final StartStopNotifier startStop = new FakeStartStop();

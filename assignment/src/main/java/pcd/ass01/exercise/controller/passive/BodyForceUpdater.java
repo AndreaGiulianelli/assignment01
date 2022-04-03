@@ -7,14 +7,16 @@ import pcd.ass01.exercise.model.V2d;
  * It represents the partial result on which the workers are working during the fork-join.
  */
 public class BodyForceUpdater {
-    private final V2d totalForce;
+    private V2d totalForce;
     private boolean frictionCalculated;
     private int repulsiveForceCounter;
+    private final int originalCounter;
 
     public BodyForceUpdater(final int repulsiveForceCounter) {
         this.totalForce = new V2d(0, 0);
         this.frictionCalculated = false;
         this.repulsiveForceCounter = repulsiveForceCounter;
+        this.originalCounter = repulsiveForceCounter;
     }
 
     public synchronized boolean updateRepulsive(final V2d repulsive) {
@@ -29,8 +31,12 @@ public class BodyForceUpdater {
         return this.isUpdateCompleted();
     }
 
-    public synchronized V2d getTotalForce() {
-        return this.totalForce;
+    public synchronized V2d getTotalForceAndReset() {
+        final V2d force = this.totalForce;
+        this.totalForce = new V2d(0, 0);
+        this.frictionCalculated = false;
+        this.repulsiveForceCounter = this.originalCounter;
+        return force;
     }
 
     private boolean isUpdateCompleted() {

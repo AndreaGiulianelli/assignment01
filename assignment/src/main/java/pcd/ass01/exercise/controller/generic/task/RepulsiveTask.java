@@ -29,7 +29,7 @@ public class RepulsiveTask implements Task{
             final V2d force = this.to.computeRepulsiveForceBy(by);
             if (this.bodyForceUpdater.updateRepulsive(force)) {
                 // We have all the force, we can safely update the acceleration
-                this.to.updateAcceleration(this.bodyForceUpdater.getTotalForce());
+                this.to.updateAcceleration(this.bodyForceUpdater.getTotalForceAndReset());
                 // Inform the latch that we have completed a body until acceleration
                 this.latch.countDown();
             }
