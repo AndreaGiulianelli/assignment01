@@ -1,4 +1,7 @@
-package pcd.ass01.barrierversion.model;
+package pcd.ass01.jpf;
+
+import gov.nasa.jpf.annotation.FilterField;
+import pcd.ass01.barrierversion.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,9 @@ public class EnvironmentModelImpl implements EnvironmentModel {
     private int currentIteration;
     private int maxIterations;
     private double vt = 0; // Virtual time
+
+    // JPF
+    private int bodiesComputed = 0;
 
     public EnvironmentModelImpl(double x0, double y0, double x1, double y1) {
         this.boundary = new Boundary(x0, y0, x1, y1);
@@ -78,5 +84,15 @@ public class EnvironmentModelImpl implements EnvironmentModel {
     @Override
     public boolean isSimulationOver() {
         return this.currentIteration >= this.maxIterations;
+    }
+
+
+    //JPF
+    public synchronized void bodyComputed() {
+        this.bodiesComputed++;
+    }
+
+    public synchronized int getBodiesComputed() {
+        return this.bodiesComputed;
     }
 }

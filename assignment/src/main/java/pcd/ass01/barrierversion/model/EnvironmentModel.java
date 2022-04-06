@@ -2,7 +2,6 @@ package pcd.ass01.barrierversion.model;
 
 import java.util.List;
 
-// todo: check that all methods are needed
 public interface EnvironmentModel {
     /**
      * Initialize the model creating all the bodies

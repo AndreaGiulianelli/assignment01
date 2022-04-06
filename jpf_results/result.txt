@@ -1,0 +1,19 @@
+====================================================== system under test
+pcd.ass01.jpf.LaunchSimulationNoGUI.main()
+
+
+====================================================== results
+no errors detected
+
+====================================================== statistics
+elapsed time:       00:38:48
+states:             new=7345301,visited=17548451,backtracked=24893752,end=13
+search:             maxDepth=2061,constraints=0
+choice generators:  thread=7345301 (signal=26371,lock=240951,sharedRef=6751891,threadApi=107,reschedule=325827), data=0
+heap:               new=1063525,released=941291,maxLive=804,gcCycles=23663123
+instructions:       233759482
+max memory:         1191MB
+loaded code:        classes=102,methods=2180
+
+====================================================== search finished: 4/6/22 11:12 AM
+ 

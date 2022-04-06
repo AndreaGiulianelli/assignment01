@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    //testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
     implementation(files("JPF/jpf-core/build/jpf.jar"))
 }
 

@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 public class LaunchSimulationNoGUI {
     public static void main(String... args) {
         // Initialize simulation values
-        final int iterations = 20000;
-        final int nBodies = 5000;
+        final int iterations = 1000;
+        final int nBodies = 1000;
         // Initialize model
         final EnvironmentModel model = new EnvironmentModelImpl(-6, -6, 6, 6);
         model.initialize(iterations, Stream.iterate(10, i -> 10).limit(nBodies).collect(Collectors.toList()));

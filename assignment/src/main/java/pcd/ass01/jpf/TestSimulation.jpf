@@ -1,0 +1,7 @@
+target = pcd.ass01.jpf.LaunchSimulationNoGUI
+
+listener = gov.nasa.jpf.listener.PreciseRaceDetector
+
+classpath = build/classes/java/main/
+
+report.console.property_violation=error,trace
