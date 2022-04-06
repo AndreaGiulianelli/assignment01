@@ -81,7 +81,7 @@ fair+ process worker \in Workers
             CalculateForceAndAcceleration:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessForce:
-                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
+                        bp := bp + jobs[self][bodyIndex];
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -91,7 +91,7 @@ fair+ process worker \in Workers
             CalculatePositions:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessPos:
-                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
+                        bp := bp + jobs[self][bodyIndex];
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -382,5 +382,5 @@ Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Apr 06 18:32:35 CEST 2022 by andrea
+\* Last modified Wed Apr 06 18:28:17 CEST 2022 by andrea
 \* Created Tue Apr 05 14:20:13 CEST 2022 by andrea

@@ -27,7 +27,8 @@ define
     \* Check that workers can't compute on dependent aspects
     SafetyInUpdate == ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") /\ (\E w \in Workers: pc[w] = "CalculatePositions")) = FALSE
     \* Check that when the master is processing the result no worker can modify the data (so the processing is consistent)
-    SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
+    \*SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
+    SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "AwaitForces") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
 end define
 
 
@@ -81,7 +82,7 @@ fair+ process worker \in Workers
             CalculateForceAndAcceleration:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessForce:
-                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
+                        bp := bp + jobs[self][bodyIndex];
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -91,7 +92,7 @@ fair+ process worker \in Workers
             CalculatePositions:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessPos:
-                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
+                        bp := bp + jobs[self][bodyIndex];
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -111,7 +112,7 @@ end process;
 end algorithm
 *)
 
-\* BEGIN TRANSLATION (chksum(pcal) = "ec788983" /\ chksum(tla) = "52142ae")
+\* BEGIN TRANSLATION (chksum(pcal) = "57a0acaf" /\ chksum(tla) = "fd11b9bb")
 VARIABLES simulation, iterationsDone, bodies, jobs, nWorkers, nProcess, 
           bodiesComputed, workerCanStart, posBarrier, forceBarrier, 
           completedLatch, pc
@@ -123,7 +124,8 @@ AllBodiesComputed == <>[](bodiesComputed = (simulation.nBodies * simulation.iter
 
 SafetyInUpdate == ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") /\ (\E w \in Workers: pc[w] = "CalculatePositions")) = FALSE
 
-SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
+
+SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "AwaitForces") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
 
 VARIABLES currentIteration, bodyIndex, bp
 
@@ -382,5 +384,5 @@ Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Apr 06 18:32:35 CEST 2022 by andrea
+\* Last modified Wed Apr 06 18:29:00 CEST 2022 by andrea
 \* Created Tue Apr 05 14:20:13 CEST 2022 by andrea

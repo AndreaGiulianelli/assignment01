@@ -9,22 +9,22 @@ CONSTANTS Workers, Master
 variables
     simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE],
     iterationsDone = 0,
-    bodies \in PT!TupleOf({1}, simulation.nBodies),
-    jobs = [w \in Workers |-> <<>>],
+    bodies \in PT!TupleOf({1}, simulation.nBodies), \* a single body is represent by a 1.
+    jobs = [w \in Workers |-> <<>>], \* list of jobs (body) for each worker
     nWorkers = Cardinality(Workers),
     nProcess = nWorkers + 1,
-    bodiesComputed = 0,
+    bodiesComputed = 0, \* number of calculations performed on bodies
     
-    workerCanStart = FALSE,
-    posBarrier = [counter |-> 0, needed |-> nProcess, pass |-> FALSE],
-    forceBarrier = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE],
-    completedLatch = [counter |-> 0, needed |-> nWorkers];
+    workerCanStart = FALSE, \* flag that simulate the start of a process/thread
+    posBarrier = [counter |-> 0, needed |-> nProcess, pass |-> FALSE], \* barrier
+    forceBarrier = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE], \* barrier
+    completedLatch = [counter |-> 0, needed |-> nWorkers]; \* latch
 define
     \* Liveness properties
     MasterDoAllIterations == <>[](iterationsDone = simulation.iterations)
     AllBodiesComputed == <>[](bodiesComputed = (simulation.nBodies * simulation.iterations * 2))
-    \* Safety invariant (modeled as a TLA+ invariant, we can model it also in Temporal logic form adding []~ before instead of = FALSE)
-    \* Check that workers can compute on dependent aspects
+    \* Safety invariant (modeled as a TLA+ invariant, we can model it also in the Temporal logic form adding []~ before the formula instead of = FALSE)
+    \* Check that workers can't compute on dependent aspects
     SafetyInUpdate == ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") /\ (\E w \in Workers: pc[w] = "CalculatePositions")) = FALSE
     \* Check that when the master is processing the result no worker can modify the data (so the processing is consistent)
     SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
@@ -81,7 +81,7 @@ fair+ process worker \in Workers
             CalculateForceAndAcceleration:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessForce:
-                        bp := bp + jobs[self][bodyIndex];
+                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -91,7 +91,7 @@ fair+ process worker \in Workers
             CalculatePositions:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessPos:
-                        bp := bp + jobs[self][bodyIndex];
+                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -382,5 +382,5 @@ Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Apr 06 16:13:21 CEST 2022 by andrea
+\* Last modified Wed Apr 06 18:32:35 CEST 2022 by andrea
 \* Created Tue Apr 05 14:20:13 CEST 2022 by andrea
