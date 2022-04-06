@@ -1,7 +1,7 @@
 package pcd.ass01.jpf;
 
 /**
- * Utility class used for some JPF counters
+ * Utility class used for some JPF tests counters
  * Designed as a singleton monitor because is accessed by different threads.
  */
 public class Utility {

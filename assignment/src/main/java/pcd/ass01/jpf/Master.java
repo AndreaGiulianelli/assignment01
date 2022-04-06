@@ -4,7 +4,6 @@ import gov.nasa.jpf.vm.Verify;
 import pcd.ass01.barrierversion.controller.passive.CyclicBarrier;
 import pcd.ass01.barrierversion.controller.passive.CyclicLatch;
 import pcd.ass01.barrierversion.controller.passive.StartAndStopListener;
-import pcd.ass01.barrierversion.model.Boundary;
 import pcd.ass01.barrierversion.model.EnvironmentModel;
 import pcd.ass01.barrierversion.view.SimulationView;
 
@@ -28,7 +27,7 @@ public class Master extends Thread{
     public void run() {
         Verify.beginAtomic();
 
-        final int nWorkers = 3;
+        final int nWorkers = 2;
         // Create barrier and latch
         final CyclicBarrier posBarrier = new CyclicBarrier(nWorkers + 1);
         final CyclicBarrier forceBarrier = new CyclicBarrier(nWorkers);
@@ -58,6 +57,7 @@ public class Master extends Thread{
             Verify.endAtomic();
             worker.start();
         }
+
         Verify.beginAtomic();
 
         // Remained bodies in the last worker
@@ -74,9 +74,6 @@ public class Master extends Thread{
 
         Verify.endAtomic();
         lastWorker.start();
-
-        // Caching values
-        final Boundary boundary = this.model.getBounds();
 
         try {
             while (!this.model.isSimulationOver()) {

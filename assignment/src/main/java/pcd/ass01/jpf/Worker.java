@@ -53,9 +53,10 @@ public class Worker extends Thread{
                 this.posBarrier.hitAndWait();
 
                 //JPF
-                //Check that no worker is calculating force
-                assert Utility.getInstance().getWorkerInForce() == 0;
-                Utility.getInstance().workerInPos();
+                //Check that no worker is calculating positions
+                assert Utility.getInstance().getWorkerInPos() == 0;
+
+                Utility.getInstance().workerInForce();
 
                 // Calculate forces
                 for(final Body body : bodyToCompute) {
@@ -64,15 +65,16 @@ public class Worker extends Thread{
                 }
 
                 //JPF
-                Utility.getInstance().workerOutPos();
+                Utility.getInstance().workerOutForce();
 
                 // Wait every worker finish the force calculus
                 this.forceBarrier.hitAndWait();
 
                 //JPF
-                // Check that no worker is calculating positions
-                assert Utility.getInstance().getWorkerInPos() == 0;
-                Utility.getInstance().workerInForce();
+                // Check that no worker is calculating force
+                assert Utility.getInstance().getWorkerInForce() == 0;
+
+                Utility.getInstance().workerInPos();
 
                 // Update positions
                 for(final Body body : bodyToCompute) {
@@ -83,7 +85,7 @@ public class Worker extends Thread{
                 }
 
                 //JPF
-                Utility.getInstance().workerOutForce();
+                Utility.getInstance().workerOutPos();
 
                 // Notify latch (so master) for the completion of one iteration on the bodies provided
                 this.completedLatch.countDown();
