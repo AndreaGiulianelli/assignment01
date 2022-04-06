@@ -90,7 +90,7 @@ public class Master extends Thread{
         long t1 = System.currentTimeMillis();
         System.out.println("Time: " + (t1 - t0) + "ms");
         // Inform the view
-        if (view != null) {
+        if (this.view != null) {
             this.view.simulationEnd();
         }
         // Interrupt all the workers in order to complete

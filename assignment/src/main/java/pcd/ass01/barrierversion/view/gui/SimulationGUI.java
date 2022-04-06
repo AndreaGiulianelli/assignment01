@@ -42,6 +42,7 @@ public class SimulationGUI extends JFrame implements SimulationViewer {
         start.addActionListener(e -> {
             start.setEnabled(false);
             controller.notifyStart();
+            start.setText("Resume");
             stop.setEnabled(true);
         });
 

@@ -7,7 +7,7 @@ public class StartStop implements StartAndStopNotifier{
     private boolean run;
 
     public StartStop() {
-        this.run = false;
+        this.run = false; // Initially is off.
     }
 
     @Override

@@ -15,8 +15,9 @@ public class CyclicBarrier {
     }
 
     public synchronized void hitAndWait() throws InterruptedException {
-        // due to E = W < S signaling. It will occour that for example this.awakeAfterWait > 0
-        // and the one that notified try to re-enter (so if it enters will decrease this.nRemainedParticipants under 0)
+        // due to E = W < S signaling. It could occur that for example this.awakeAfterWait > 0
+        // and one thread (that has already pass the barrier but at the same time there are others that are unlocked and the scheduler
+        // hasn't assigned the cpu to them yet) enter the monitor (so if it enters will decrease this.nRemainedParticipants under 0)
         while (this.awakeAfterWait > 0) {
             this.wait();
         }
@@ -38,7 +39,7 @@ public class CyclicBarrier {
             // The last to awake will reset the barrier
             this.nRemainedParticipants = this.originalParticipants;
             this.awakeAfterWait = 0;
-            this.notifyAll(); // Notify process that are trying to enter monitor during the reset.
+            this.notifyAll(); // Notify process that are trying to enter monitor during the awaking phase.
         }
     }
 }

@@ -36,7 +36,7 @@ public class Worker extends Thread{
     @Override
     public void run() {
         this.log("started");
-        // Caching general value used during simulation that remain the same
+        // Caching general value used during simulation that will remain the same
         final double dt = this.envModel.getDeltaTime();
         final Boundary boundary = this.envModel.getBounds();
         final List<Body> bodies = this.envModel.getBodies();
@@ -44,7 +44,7 @@ public class Worker extends Thread{
         // Caching the body ref to compute by the worker (they will remain the same for the entire simulation)
         for(int i = 0; i < this.nBodyAllocated; i++) {
             final Body body = this.envModel.getBody(startIndex + i);
-            bodyToCompute.addFirst(body);
+            bodyToCompute.addFirst(body); // AddFirst for performance reasons (will add it in the head of the list).
         }
         // with the try catch the thread can be interrupted and can exit from computation when needed
         try {

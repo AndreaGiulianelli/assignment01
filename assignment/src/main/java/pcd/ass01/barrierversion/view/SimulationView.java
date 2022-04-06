@@ -12,7 +12,7 @@ public interface SimulationView {
     void display();
     /**
      * Update the view
-     * @param positions list of the position of the bodies
+     * @param positions list of the bodies position
      * @param vt virtual time
      * @param iter iteration counter
      * @param boundary boundary of the environment

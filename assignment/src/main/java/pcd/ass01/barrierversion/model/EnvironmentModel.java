@@ -2,19 +2,23 @@ package pcd.ass01.barrierversion.model;
 
 import java.util.List;
 
+/**
+ * Interface that the model has to offer in order to work with the simulation environment.
+ */
 public interface EnvironmentModel {
     /**
      * Initialize the model creating all the bodies
+     * @param maxIterations number of the simulation's interations.
      * @param masses the mass of each body to create
      */
     void initialize(int maxIterations, List<Integer> masses);
     /**
-     * Increment environmentIterations
+     * Increment environment iteration counter
      */
     void incrementIterations();
     /**
-     * Get how many bodies are in the simulation
-     * @return the bodyCount
+     * Get the number of bodies that are in the simulation
+     * @return the bodies number
      */
     int getBodiesCount();
     /**
@@ -24,8 +28,8 @@ public interface EnvironmentModel {
     List<Body> getBodies();
     /**
      * Get a single body from the environment
-     * @param id
-     * @return
+     * @param id the id of the body to retrieve
+     * @return the body
      */
     Body getBody(int id);
     /**
@@ -34,7 +38,8 @@ public interface EnvironmentModel {
      */
     Boundary getBounds();
     /**
-     * Get dt in our virtual time
+     * Get the delta-time of our virtual time
+     * @return the delta-time
      */
     double getDeltaTime();
     /**

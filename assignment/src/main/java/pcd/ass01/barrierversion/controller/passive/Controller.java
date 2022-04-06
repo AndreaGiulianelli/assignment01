@@ -9,7 +9,7 @@ public interface Controller {
      */
     void setView(SimulationView view);
     /**
-     * Notify the controller that the user want to start the simulation.
+     * Notify the controller that the user want to start/resume the simulation.
      */
     void notifyStart();
     /**

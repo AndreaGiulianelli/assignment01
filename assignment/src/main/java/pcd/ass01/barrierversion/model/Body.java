@@ -62,7 +62,6 @@ public class Body {
 
     /**
      * Update the velocity, given the instant acceleration
-     * @param acc instant acceleration
      * @param dt time elapsed
      */
     public void updateVelocity(double dt){

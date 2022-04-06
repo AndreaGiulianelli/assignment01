@@ -15,11 +15,11 @@ public class LaunchSimulation {
         // Initialize simulation values
         final int iterations = 50000;
         final int nBodies = 500;
+        final int mass = 10;
         // Initialize model
         final EnvironmentModel model = new EnvironmentModelImpl(-6, -6, 6, 6);
-        model.initialize(iterations, Stream.iterate(10, i -> 10).limit(nBodies).collect(Collectors.toList()));
+        model.initialize(iterations, Stream.iterate(mass, i -> mass).limit(nBodies).collect(Collectors.toList()));
         // Initialize startstop
-        // final StartAndStopNotifier startAndStopNotifier = new FakeStartStop();
         final StartAndStopNotifier startAndStopNotifier = new StartStop();
         // Initialize controller
         final Controller controller = new ControllerImpl(model, startAndStopNotifier);

@@ -15,7 +15,7 @@ public class EnvironmentModelImpl implements EnvironmentModel {
     private int maxIterations;
     private double vt = 0; // Virtual time
 
-    public EnvironmentModelImpl(double x0, double y0, double x1, double y1) {
+    public EnvironmentModelImpl(final double x0, final double y0, final double x1, final double y1) {
         this.boundary = new Boundary(x0, y0, x1, y1);
         this.currentIteration = 0;
     }
@@ -24,12 +24,12 @@ public class EnvironmentModelImpl implements EnvironmentModel {
     public void initialize(final int maxIterations, final List<Integer> masses) {
         this.maxIterations = maxIterations;
         final int bodiesCount = masses.size();
-        this.bodies = new ArrayList<>(bodiesCount);
+        this.bodies = new ArrayList<>(bodiesCount); // Pre-sizing the array for performance reasons.
         final Random rand = new Random(System.currentTimeMillis());
         for (int i = 0; i < bodiesCount; i++) {
-            double x = this.boundary.getX0()*0.25 + rand.nextDouble() * (this.boundary.getX1() - this.boundary.getX0()) * 0.25;
-            double y = this.boundary.getY0()*0.25 + rand.nextDouble() * (this.boundary.getY1() - this.boundary.getY0()) * 0.25;
-            Body b = new Body(i, new P2d(x, y), new V2d(0, 0), masses.get(i));
+            final double x = this.boundary.getX0()*0.25 + rand.nextDouble() * (this.boundary.getX1() - this.boundary.getX0()) * 0.25;
+            final double y = this.boundary.getY0()*0.25 + rand.nextDouble() * (this.boundary.getY1() - this.boundary.getY0()) * 0.25;
+            final Body b = new Body(i, new P2d(x, y), new V2d(0, 0), masses.get(i));
             this.bodies.add(b);
         }
     }
