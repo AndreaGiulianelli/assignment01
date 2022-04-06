@@ -28,7 +28,7 @@ public class Master extends Thread{
     public void run() {
         Verify.beginAtomic();
 
-        final int nWorkers = 2;
+        final int nWorkers = 3;
         // Create barrier and latch
         final CyclicBarrier posBarrier = new CyclicBarrier(nWorkers + 1);
         final CyclicBarrier forceBarrier = new CyclicBarrier(nWorkers);
