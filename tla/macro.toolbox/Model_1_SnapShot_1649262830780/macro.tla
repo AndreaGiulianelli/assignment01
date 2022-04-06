@@ -9,22 +9,25 @@ CONSTANTS Workers, Master
 variables
     simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE],
     iterationsDone = 0,
-    bodies \in PT!TupleOf({1}, simulation.nBodies),
-    jobs = [w \in Workers |-> <<>>],
+    bodies \in PT!TupleOf({1}, simulation.nBodies), \* a single body is represent by a 1.
+    jobs = [w \in Workers |-> <<>>], \* list of jobs (body) for each worker
     nWorkers = Cardinality(Workers),
     nProcess = nWorkers + 1,
-    bodiesComputed = 0,
+    bodiesComputed = 0, \* number of calculations performed on bodies
     
-    workerCanStart = FALSE,
-    posBarrier = [counter |-> 0, needed |-> nProcess, pass |-> FALSE],
-    forceBarrier = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE],
-    completedLatch = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE];
+    workerCanStart = FALSE, \* flag that simulate the start of a process/thread
+    posBarrier = [counter |-> 0, needed |-> nProcess, pass |-> FALSE], \* barrier
+    forceBarrier = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE], \* barrier
+    completedLatch = [counter |-> 0, needed |-> nWorkers]; \* latch
 define
     \* Liveness properties
     MasterDoAllIterations == <>[](iterationsDone = simulation.iterations)
     AllBodiesComputed == <>[](bodiesComputed = (simulation.nBodies * simulation.iterations * 2))
-    \* Safety invariant (modeled as a TLA+ invariant, we can model it also in Temporal logic form adding []~ before instead of = FALSE)
+    \* Safety invariant (modeled as a TLA+ invariant, we can model it also in the Temporal logic form adding []~ before the formula instead of = FALSE)
+    \* Check that workers can't compute on dependent aspects
     SafetyInUpdate == ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") /\ (\E w \in Workers: pc[w] = "CalculatePositions")) = FALSE
+    \* Check that when the master is processing the result no worker can modify the data (so the processing is consistent)
+    SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
 end define
 
 
@@ -41,21 +44,21 @@ fair+ process master = Master
             end with;
             workerCanStart := TRUE;
         SimulationCicle:
-            while currentIteration < simulation.iterations do
-                ForceReset:
+            while simulation.completed = FALSE do
+                ForceBarrierReset:
                     await forceBarrier.counter = forceBarrier.needed;
                     rpb: posBarrier.counter := 0; \* reset pos barrier counter
                     rpp: posBarrier.pass := FALSE; \* reset pos barrier pass
                     forceBarrier.pass := TRUE;
-                AwaitComputation:
+                AwaitWorkersComputation:
                     await completedLatch.counter = completedLatch.needed;
-                    completedLatch.counter := 0;
+                    completedLatch.counter := 0; \* reset latch counter
                 ProcessLocal:
                     currentIteration := currentIteration + 1;
                     if currentIteration = simulation.iterations then
                         simulation.completed := TRUE;
                     end if;
-                \* Put the pos barrier in the end in order to avoid deadlock of the worker on the last iteration
+                \* Put the pos barrier in the end in order to avoid workers deadlock on the last iteration
                 posBarrier.counter := posBarrier.counter + 1;
                 OkPos:
                     await posBarrier.counter = posBarrier.needed;
@@ -63,7 +66,7 @@ fair+ process master = Master
                     rfp: forceBarrier.pass := FALSE; \* reset force barrier pass
                     posBarrier.pass := TRUE;
             end while;
-        Process:
+        ProcessSimulationEnd:
             iterationsDone := currentIteration;
 end process;
 
@@ -78,7 +81,7 @@ fair+ process worker \in Workers
             CalculateForceAndAcceleration:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessForce:
-                        bp := bp + jobs[self][bodyIndex];
+                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -88,7 +91,7 @@ fair+ process worker \in Workers
             CalculatePositions:
                 while bodyIndex <= Len(jobs[self]) do
                     BodyProcessPos:
-                        bp := bp + jobs[self][bodyIndex];
+                        bp := bp + jobs[self][bodyIndex]; \* simulate calculation
                         bodyIndex := bodyIndex + 1;
                 end while;
                 bodyIndex := 1;
@@ -96,7 +99,7 @@ fair+ process worker \in Workers
                 bodiesComputed := bodiesComputed + bp;
                 bp := 0;
                 completedLatch.counter := completedLatch.counter + 1;
-            \* Put the pos barrier in the end in order to avoid deadlock of the worker on the last iteration
+            \* Put the pos barrier in the end in order to avoid workers deadlock on the last iteration
             posBarrier.counter := posBarrier.counter + 1;
             AwaitPosConsistency:
                 await posBarrier.pass = TRUE;
@@ -108,7 +111,7 @@ end process;
 end algorithm
 *)
 
-\* BEGIN TRANSLATION (chksum(pcal) = "cfe57466" /\ chksum(tla) = "1c6292a3")
+\* BEGIN TRANSLATION (chksum(pcal) = "ec788983" /\ chksum(tla) = "52142ae")
 VARIABLES simulation, iterationsDone, bodies, jobs, nWorkers, nProcess, 
           bodiesComputed, workerCanStart, posBarrier, forceBarrier, 
           completedLatch, pc
@@ -117,7 +120,10 @@ VARIABLES simulation, iterationsDone, bodies, jobs, nWorkers, nProcess,
 MasterDoAllIterations == <>[](iterationsDone = simulation.iterations)
 AllBodiesComputed == <>[](bodiesComputed = (simulation.nBodies * simulation.iterations * 2))
 
+
 SafetyInUpdate == ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") /\ (\E w \in Workers: pc[w] = "CalculatePositions")) = FALSE
+
+SafetyInMasterResultProcess == (pc[Master] = "ProcessLocal" /\ ((\E w \in Workers: pc[w] = "CalculateForceAndAcceleration") \/ (\E w \in Workers: pc[w] = "CalculatePositions"))) = FALSE
 
 VARIABLES currentIteration, bodyIndex, bp
 
@@ -138,7 +144,7 @@ Init == (* Global variables *)
         /\ workerCanStart = FALSE
         /\ posBarrier = [counter |-> 0, needed |-> nProcess, pass |-> FALSE]
         /\ forceBarrier = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE]
-        /\ completedLatch = [counter |-> 0, needed |-> nWorkers, pass |-> FALSE]
+        /\ completedLatch = [counter |-> 0, needed |-> nWorkers]
         (* Process master *)
         /\ currentIteration = 0
         (* Process worker *)
@@ -161,22 +167,23 @@ ScheduleWork == /\ pc[Master] = "ScheduleWork"
                                 bodyIndex, bp >>
 
 SimulationCicle == /\ pc[Master] = "SimulationCicle"
-                   /\ IF currentIteration < simulation.iterations
-                         THEN /\ pc' = [pc EXCEPT ![Master] = "ForceReset"]
-                         ELSE /\ pc' = [pc EXCEPT ![Master] = "Process"]
+                   /\ IF simulation.completed = FALSE
+                         THEN /\ pc' = [pc EXCEPT ![Master] = "ForceBarrierReset"]
+                         ELSE /\ pc' = [pc EXCEPT ![Master] = "ProcessSimulationEnd"]
                    /\ UNCHANGED << simulation, iterationsDone, bodies, jobs, 
                                    nWorkers, nProcess, bodiesComputed, 
                                    workerCanStart, posBarrier, forceBarrier, 
                                    completedLatch, currentIteration, bodyIndex, 
                                    bp >>
 
-ForceReset == /\ pc[Master] = "ForceReset"
-              /\ forceBarrier.counter = forceBarrier.needed
-              /\ pc' = [pc EXCEPT ![Master] = "rpb"]
-              /\ UNCHANGED << simulation, iterationsDone, bodies, jobs, 
-                              nWorkers, nProcess, bodiesComputed, 
-                              workerCanStart, posBarrier, forceBarrier, 
-                              completedLatch, currentIteration, bodyIndex, bp >>
+ForceBarrierReset == /\ pc[Master] = "ForceBarrierReset"
+                     /\ forceBarrier.counter = forceBarrier.needed
+                     /\ pc' = [pc EXCEPT ![Master] = "rpb"]
+                     /\ UNCHANGED << simulation, iterationsDone, bodies, jobs, 
+                                     nWorkers, nProcess, bodiesComputed, 
+                                     workerCanStart, posBarrier, forceBarrier, 
+                                     completedLatch, currentIteration, 
+                                     bodyIndex, bp >>
 
 rpb == /\ pc[Master] = "rpb"
        /\ posBarrier' = [posBarrier EXCEPT !.counter = 0]
@@ -188,19 +195,20 @@ rpb == /\ pc[Master] = "rpb"
 rpp == /\ pc[Master] = "rpp"
        /\ posBarrier' = [posBarrier EXCEPT !.pass = FALSE]
        /\ forceBarrier' = [forceBarrier EXCEPT !.pass = TRUE]
-       /\ pc' = [pc EXCEPT ![Master] = "AwaitComputation"]
+       /\ pc' = [pc EXCEPT ![Master] = "AwaitWorkersComputation"]
        /\ UNCHANGED << simulation, iterationsDone, bodies, jobs, nWorkers, 
                        nProcess, bodiesComputed, workerCanStart, 
                        completedLatch, currentIteration, bodyIndex, bp >>
 
-AwaitComputation == /\ pc[Master] = "AwaitComputation"
-                    /\ completedLatch.counter = completedLatch.needed
-                    /\ completedLatch' = [completedLatch EXCEPT !.counter = 0]
-                    /\ pc' = [pc EXCEPT ![Master] = "ProcessLocal"]
-                    /\ UNCHANGED << simulation, iterationsDone, bodies, jobs, 
-                                    nWorkers, nProcess, bodiesComputed, 
-                                    workerCanStart, posBarrier, forceBarrier, 
-                                    currentIteration, bodyIndex, bp >>
+AwaitWorkersComputation == /\ pc[Master] = "AwaitWorkersComputation"
+                           /\ completedLatch.counter = completedLatch.needed
+                           /\ completedLatch' = [completedLatch EXCEPT !.counter = 0]
+                           /\ pc' = [pc EXCEPT ![Master] = "ProcessLocal"]
+                           /\ UNCHANGED << simulation, iterationsDone, bodies, 
+                                           jobs, nWorkers, nProcess, 
+                                           bodiesComputed, workerCanStart, 
+                                           posBarrier, forceBarrier, 
+                                           currentIteration, bodyIndex, bp >>
 
 ProcessLocal == /\ pc[Master] = "ProcessLocal"
                 /\ currentIteration' = currentIteration + 1
@@ -237,17 +245,18 @@ rfp == /\ pc[Master] = "rfp"
                        nProcess, bodiesComputed, workerCanStart, 
                        completedLatch, currentIteration, bodyIndex, bp >>
 
-Process == /\ pc[Master] = "Process"
-           /\ iterationsDone' = currentIteration
-           /\ pc' = [pc EXCEPT ![Master] = "Done"]
-           /\ UNCHANGED << simulation, bodies, jobs, nWorkers, nProcess, 
-                           bodiesComputed, workerCanStart, posBarrier, 
-                           forceBarrier, completedLatch, currentIteration, 
-                           bodyIndex, bp >>
+ProcessSimulationEnd == /\ pc[Master] = "ProcessSimulationEnd"
+                        /\ iterationsDone' = currentIteration
+                        /\ pc' = [pc EXCEPT ![Master] = "Done"]
+                        /\ UNCHANGED << simulation, bodies, jobs, nWorkers, 
+                                        nProcess, bodiesComputed, 
+                                        workerCanStart, posBarrier, 
+                                        forceBarrier, completedLatch, 
+                                        currentIteration, bodyIndex, bp >>
 
-master == ScheduleWork \/ SimulationCicle \/ ForceReset \/ rpb \/ rpp
-             \/ AwaitComputation \/ ProcessLocal \/ OkPos \/ rfb \/ rfp
-             \/ Process
+master == ScheduleWork \/ SimulationCicle \/ ForceBarrierReset \/ rpb
+             \/ rpp \/ AwaitWorkersComputation \/ ProcessLocal \/ OkPos
+             \/ rfb \/ rfp \/ ProcessSimulationEnd
 
 WaitToStart(self) == /\ pc[self] = "WaitToStart"
                      /\ workerCanStart = TRUE
@@ -373,5 +382,5 @@ Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
 =============================================================================
 \* Modification History
-\* Last modified Wed Apr 06 16:03:07 CEST 2022 by andrea
+\* Last modified Wed Apr 06 18:32:35 CEST 2022 by andrea
 \* Created Tue Apr 05 14:20:13 CEST 2022 by andrea
