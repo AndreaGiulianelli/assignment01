@@ -69,14 +69,14 @@ public class Worker extends Thread{
                     body.updatePos(dt);
                     body.checkAndSolveBoundaryCollision(boundary);
                 }
-                // Notify latch (so master) for the completion of one interation on the bodies provided
+                // Notify latch (so master) for the completion of one iteration on the bodies provided
                 this.log("iteration completed");
                 this.completedLatch.countDown();
             }
         } catch (InterruptedException e) {}
     }
 
-    private V2d computeTotalForceOnBody(Body b, List<Body> bodies) {
+    private V2d computeTotalForceOnBody(final Body b, final List<Body> bodies) {
         V2d totalForce = new V2d(0, 0);
 
         /* compute total repulsive force */

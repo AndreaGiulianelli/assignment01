@@ -39,7 +39,7 @@ public class Simulator {
 		long iter = 0;
 
 		/* simulation loop */
-
+		long t0 = System.currentTimeMillis();
 		while (iter < nSteps) {
 
 			/* update bodies velocity */
@@ -76,9 +76,11 @@ public class Simulator {
 
 			/* display current stage */
 
-			viewer.display(bodies, vt, iter, bounds);
+			//viewer.display(bodies, vt, iter, bounds);
 
 		}
+		long t1 = System.currentTimeMillis();
+		System.out.println(t1 - t0);
 	}
 
 	private V2d computeTotalForceOnBody(Body b) {
@@ -134,7 +136,7 @@ public class Simulator {
 
 	private void testBodySet4_many_bodies() {
 		bounds = new Boundary(-6.0, -6.0, 6.0, 6.0);
-		int nBodies = 1000;
+		int nBodies = 5000;
 		Random rand = new Random(System.currentTimeMillis());
 		bodies = new ArrayList<Body>();
 		for (int i = 0; i < nBodies; i++) {

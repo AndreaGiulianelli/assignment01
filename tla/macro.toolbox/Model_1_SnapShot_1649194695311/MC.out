@@ -1,0 +1,1038 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.18 of Day Month 20?? (rev: f4d8c3d)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 107 and seed -741819808081594473 with 2 workers on 4 cores with 1177MB heap and 2645MB offheap memory [pid: 14932] (Linux 5.13.0-39-generic amd64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /home/andrea/Desktop/assignment01/tla/macro.toolbox/Model_1/MC.tla
+Parsing file /home/andrea/Desktop/assignment01/tla/macro.toolbox/Model_1/macro.tla
+Parsing file /opt/TLA+Toolbox/plugins/org.lamport.tlatools_1.0.0.202203041950/tla2sany/StandardModules/TLC.tla
+Parsing file /opt/TLA+Toolbox/plugins/org.lamport.tlatools_1.0.0.202203041950/tla2sany/StandardModules/Sequences.tla
+Parsing file /opt/TLA+Toolbox/plugins/org.lamport.tlatools_1.0.0.202203041950/tla2sany/StandardModules/Integers.tla
+Parsing file /opt/TLA+Toolbox/plugins/org.lamport.tlatools_1.0.0.202203041950/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /opt/TLA+Toolbox/plugins/org.lamport.tlatools_1.0.0.202203041950/tla2sany/StandardModules/Naturals.tla
+Parsing file /home/andrea/Desktop/assignment01/tla/macro.toolbox/Model_1/PT.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Integers
+Semantic processing of module PT
+Semantic processing of module macro
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-04-05 23:38:13)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 2 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2022-04-05 23:38:14.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2114:1 @!@!@
+Deadlock reached.
+@!@!@ENDMSG 2114 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "ScheduleWork", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 0
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <ScheduleWork line 105, col 17 to line 111, col 44 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "SimulationCicle", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 0
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <SimulationCicle line 113, col 20 to line 120, col 47 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "OkPos", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 0
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <OkPos line 122, col 10 to line 128, col 55 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "AwaitComputation", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 0
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <AwaitComputation line 130, col 21 to line 136, col 48 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "ProcessLocal", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 0
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <ProcessLocal line 138, col 17 to line 143, col 70 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "SimulationCicle", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <SimulationCicle line 113, col 20 to line 120, col 47 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "OkPos", worker1 |-> "MainLoop", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "OkPos", worker1 |-> "AwaitPosConsistency", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <AwaitPosConsistency line 165, col 30 to line 173, col 57 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "MainLoop" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <CalculateForceAndAcceleration line 175, col 40 to line 186, col 67 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "AwaitForces",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <AwaitForces line 188, col 22 to line 194, col 67 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "CalculatePositions",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <CalculatePositions line 196, col 29 to line 203, col 56 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "NotifyMaster",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <NotifyMaster line 205, col 23 to line 211, col 68 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "OkPos", worker1 |-> "MainLoop", worker2 |-> "AwaitPosConsistency"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <AwaitPosConsistency line 165, col 30 to line 173, col 57 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "OkPos",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <OkPos line 122, col 10 to line 128, col 55 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "AwaitComputation",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <AwaitComputation line 130, col 21 to line 136, col 48 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "ProcessLocal",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 1
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <ProcessLocal line 138, col 17 to line 143, col 70 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "SimulationCicle",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <SimulationCicle line 113, col 20 to line 120, col 47 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <CalculateForceAndAcceleration line 175, col 40 to line 186, col 67 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "AwaitForces",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <AwaitForces line 188, col 22 to line 194, col 67 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "CalculatePositions",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <CalculatePositions line 196, col 29 to line 203, col 56 of module macro>
+/\ posBarrier = 2
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "NotifyMaster",
+  worker2 |-> "AwaitPosConsistency" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <AwaitPosConsistency line 165, col 30 to line 173, col 57 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "NotifyMaster",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <NotifyMaster line 205, col 23 to line 211, col 68 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "MainLoop",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 1
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <AwaitPosConsistency line 165, col 30 to line 173, col 57 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "CalculateForceAndAcceleration",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <CalculateForceAndAcceleration line 175, col 40 to line 186, col 67 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "AwaitForces",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <AwaitForces line 188, col 22 to line 194, col 67 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "CalculatePositions",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <CalculatePositions line 196, col 29 to line 203, col 56 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "NotifyMaster",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <NotifyMaster line 205, col 23 to line 211, col 68 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "MainLoop",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 0
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Process",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> FALSE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Process line 145, col 12 to line 151, col 57 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Done",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "CalculateForceAndAcceleration" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <CalculateForceAndAcceleration line 175, col 40 to line 186, col 67 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Done",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "AwaitForces" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+35: <AwaitForces line 188, col 22 to line 194, col 67 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Done",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "CalculatePositions" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+36: <CalculatePositions line 196, col 29 to line 203, col 56 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [ master |-> "Done",
+  worker1 |-> "AwaitPosConsistency",
+  worker2 |-> "NotifyMaster" ]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+37: <NotifyMaster line 205, col 23 to line 211, col 68 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "Done", worker1 |-> "AwaitPosConsistency", worker2 |-> "MainLoop"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+38: <MainLoop line 156, col 19 to line 163, col 46 of module macro>
+/\ posBarrier = 0
+/\ nWorkers = 2
+/\ iterationsDone = 2
+/\ bodies = <<1, 1, 1, 1>>
+/\ pc = [master |-> "Done", worker1 |-> "AwaitPosConsistency", worker2 |-> "Done"]
+/\ simulation = [iterations |-> 2, nBodies |-> 4, completed |-> TRUE]
+/\ completedLatch = [counter |-> 0, needed |-> 2]
+/\ currentIteration = 2
+/\ bodiesComputed = 0
+/\ jobs = [worker1 |-> <<>>, worker2 |-> <<>>]
+/\ okPosBarrier = FALSE
+/\ bodyIndex = [worker1 |-> 1, worker2 |-> 1]
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-04-05 23:38:14
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 88, col 1 to line 88, col 4 of module macro>: 4:4
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 89, col 12 to line 89, col 78 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 23 to line 91, col 57 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |line 54, col 20 to line 54, col 32 of module PT: 4:16
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 54, col 21 to line 54, col 24 of module PT: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 54, col 29 to line 54, col 31 of module PT: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |line 91, col 34 to line 91, col 36 of module macro: 4:44
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 91, col 39 to line 91, col 56 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 92, col 19 to line 92, col 42 of module macro: 4:8
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 92, col 26 to line 92, col 32 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||line 11, col 1 to line 11, col 22 of module MC: 4:12
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 93, col 12 to line 93, col 42 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 95, col 12 to line 95, col 76 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 97, col 12 to line 97, col 31 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 101, col 24 to line 101, col 47 of module macro: 4:8
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 101, col 34 to line 101, col 40 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||line 11, col 1 to line 11, col 22 of module MC: 4:12
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 12 to line 103, col 74 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |line 102, col 17 to line 103, col 74 of module macro: 4:12
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 102, col 27 to line 102, col 33 of module macro: 4
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ScheduleWork line 105, col 1 to line 105, col 12 of module macro>: 2:7
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 20 to line 105, col 46 of module macro: 948
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 105, col 20 to line 105, col 29 of module macro: 941
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 106, col 20 to line 106, col 23 of module macro: 7
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 20 to line 107, col 66 of module macro: 7
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 108, col 20 to line 111, col 44 of module macro: 7
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<SimulationCicle line 113, col 1 to line 113, col 15 of module macro>: 10:181
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 113, col 23 to line 113, col 52 of module macro: 1119
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 113, col 23 to line 113, col 32 of module macro: 938
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 114, col 26 to line 114, col 65 of module macro: 181
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 31 to line 115, col 70 of module macro: 70
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 116, col 31 to line 116, col 72 of module macro: 111
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 117, col 23 to line 120, col 47 of module macro: 181
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<OkPos line 122, col 1 to line 122, col 5 of module macro>: 9:46
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 122, col 13 to line 122, col 32 of module macro: 975
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 122, col 13 to line 122, col 22 of module macro: 929
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 123, col 13 to line 123, col 26 of module macro: 143
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 123, col 13 to line 123, col 22 of module macro: 97
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 124, col 13 to line 124, col 34 of module macro: 46
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 125, col 13 to line 125, col 60 of module macro: 46
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 126, col 13 to line 128, col 55 of module macro: 46
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<AwaitComputation line 130, col 1 to line 130, col 16 of module macro>: 9:174
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 130, col 24 to line 130, col 54 of module macro: 1097
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 130, col 24 to line 130, col 33 of module macro: 923
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 131, col 24 to line 131, col 27 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 24 to line 132, col 67 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 133, col 24 to line 136, col 48 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ProcessLocal line 138, col 1 to line 138, col 12 of module macro>: 8:174
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 138, col 20 to line 138, col 46 of module macro: 1091
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 138, col 20 to line 138, col 29 of module macro: 917
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 139, col 20 to line 139, col 59 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 140, col 20 to line 140, col 66 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 141, col 20 to line 143, col 70 of module macro: 174
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Process line 145, col 1 to line 145, col 7 of module macro>: 18:152
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 145, col 15 to line 145, col 36 of module macro: 1063
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 145, col 15 to line 145, col 24 of module macro: 911
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 146, col 15 to line 146, col 48 of module macro: 152
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 147, col 15 to line 147, col 66 of module macro: 152
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 148, col 15 to line 148, col 50 of module macro: 152
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 149, col 15 to line 151, col 57 of module macro: 152
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<MainLoop line 156, col 1 to line 156, col 14 of module macro>: 104:328
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 156, col 22 to line 156, col 42 of module macro: 2087
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 156, col 22 to line 156, col 29 of module macro: 1759
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 157, col 25 to line 157, col 52 of module macro: 328
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 158, col 30 to line 158, col 81 of module macro: 284
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 159, col 30 to line 159, col 66 of module macro: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 160, col 22 to line 163, col 46 of module macro: 328
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<AwaitPosConsistency line 165, col 1 to line 165, col 25 of module macro>: 94:200
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 165, col 33 to line 165, col 64 of module macro: 1941
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 165, col 33 to line 165, col 40 of module macro: 1741
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 166, col 33 to line 166, col 46 of module macro: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 166, col 33 to line 166, col 42 of module macro: 336
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 167, col 33 to line 167, col 60 of module macro: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 168, col 33 to line 168, col 91 of module macro: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 169, col 33 to line 173, col 57 of module macro: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CalculateForceAndAcceleration line 175, col 1 to line 175, col 35 of module macro>: 154:265
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 175, col 43 to line 175, col 84 of module macro: 1994
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 175, col 43 to line 175, col 50 of module macro: 1729
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 176, col 43 to line 176, col 46 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 177, col 43 to line 177, col 83 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 178, col 43 to line 186, col 67 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<AwaitForces line 188, col 1 to line 188, col 17 of module macro>: 144:262
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 188, col 25 to line 188, col 48 of module macro: 1979
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 188, col 25 to line 188, col 32 of module macro: 1717
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 25 to line 189, col 28 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 190, col 25 to line 190, col 72 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 191, col 25 to line 194, col 67 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CalculatePositions line 196, col 1 to line 196, col 24 of module macro>: 148:262
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 196, col 32 to line 196, col 62 of module macro: 1967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 196, col 32 to line 196, col 39 of module macro: 1705
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 197, col 32 to line 197, col 35 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 198, col 32 to line 198, col 73 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 199, col 32 to line 203, col 56 of module macro: 262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<NotifyMaster line 205, col 1 to line 205, col 18 of module macro>: 130:265
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 205, col 26 to line 205, col 50 of module macro: 1958
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 205, col 26 to line 205, col 33 of module macro: 1693
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 206, col 26 to line 206, col 29 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 207, col 26 to line 207, col 63 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 208, col 26 to line 211, col 68 of module macro: 265
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Terminating line 219, col 1 to line 219, col 11 of module macro>: 0:3
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 40 to line 219, col 56 of module macro: 1006
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 219, col 40 to line 219, col 47 of module macro: 997
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 31 to line 219, col 37 of module macro: 830
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 220, col 19 to line 220, col 32 of module macro: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(38) at 2022-04-05 23:38:14: 2,162 states generated (92,989 s/min), 831 distinct states found (35,741 ds/min), 1 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+2162 states generated, 831 distinct states found, 1 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 38.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 1401ms at (2022-04-05 23:38:14)
+@!@!@ENDMSG 2186 @!@!@

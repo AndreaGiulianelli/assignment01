@@ -26,8 +26,7 @@ public class Master extends Thread{
 
     @Override
     public void run() {
-        //final int nWorkers = Runtime.getRuntime().availableProcessors() + 1;
-        final int nWorkers = 1;
+        final int nWorkers = Runtime.getRuntime().availableProcessors() + 1;
         // Create barrier and latch
         final CyclicBarrier posBarrier = new CyclicBarrier(nWorkers + 1);
         final CyclicBarrier forceBarrier = new CyclicBarrier(nWorkers);

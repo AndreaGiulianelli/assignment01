@@ -5,7 +5,7 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/7.2/userguide/building_java_projects.html
  */
-
+import java.io.ByteArrayOutputStream
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
@@ -30,4 +30,49 @@ application {
 tasks.test {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.register("jpfVerify") {
+    group = "Verification"
+    description = "Run JPF verification with ./gradlew jpfVerify /path/of/your/jpf"
+    val stdout = ByteArrayOutputStream()
+    val pwd = System.getProperty("user.dir")
+    val folder = File(pwd)
+    val files = folder.listFiles { a -> !(a.name.startsWith(".") || a.name == "build") }
+    // Get all the folders and file of this project and bind them with the docker image
+    // NB! .gradle and build should not be included, the compile process should be done with the internal jdk
+    val toMount: Array<Any> = files.map { it -> "type=bind,source=${it.absolutePath},target=/home/${it.name}" }
+        .flatMap { it ->  listOf("--mount", it) }
+        .toTypedArray()
+    // Get the container in execution
+    exec {
+        commandLine("docker", "container", "ps")
+        standardOutput = stdout
+    }
+    // If there isn't the project container, the process should clean the environment (i.e. kill the previous container and starts a new one)
+    if(!stdout.toString().contains("jpf_run_${project.name}")) {
+        println("Create the jpf container...")
+        exec {
+            commandLine("docker", "container", "rm", "jpf_run_${project.name}", "--force")
+            setIgnoreExitValue(true)
+            standardOutput = stdout
+        }
+        exec {
+            commandLine("docker", "run", "--name", "jpf_run_${project.name}",
+                *toMount,
+                "-d", "gianlucaaguzzi/pcd-jpf:latest", "sleep", "infinity")
+            setIgnoreExitValue(true)
+            standardOutput = stdout
+        }
+        println("Done!")
+    }
+    doFirst {
+        if(!properties.containsKey("file")) {
+            error("""you have to pass the file that you want to verify. Use: -Pfile="/your/path/file.jpf" """)
+        }
+    }
+    doLast {
+        exec { commandLine("docker", "exec", "jpf_run_${project.name}", "./gradlew", "build") }
+        exec { commandLine("docker", "exec", "jpf_run_${project.name}", "java", "-jar", "/usr/lib/JPF/jpf-core/build/RunJPF.jar", properties["file"])}
+    }
 }
