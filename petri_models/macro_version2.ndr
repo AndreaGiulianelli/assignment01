@@ -2,7 +2,7 @@ p 50.0 85.0 M0 1 nw
 t 95.0 145.0 m0 0 w n
 t 95.0 340.0 m1 c 0 w n {posB.wait} e
 p 95.0 425.0 M4 0 nw
-t 95.0 500.0 m2 c 0 w n {completitionL.await} e
+t 95.0 500.0 m2 c 0 w n {completionL.await} e
 p 95.0 585.0 M5 0 nw
 t 95.0 670.0 m3 c 0 w n getResult e
 p 140.0 85.0 M1 5 nw nWorkers e
@@ -12,7 +12,7 @@ p 600.0 675.0 W6 0 ne
 t 600.0 615.0 w3 c 0 w n {forceB.wait} e
 t 600.0 740.0 w4 c 0 w n calculatePos e
 p 600.0 815.0 W7 0 ne
-t 600.0 875.0 w5 c 0 w n {completitionL.countDown} e
+t 600.0 875.0 w5 c 0 w n {completionL.countDown} e
 t 600.0 110.0 w0 0 w n
 p 600.0 55.0 W0 5 ne
 t 340.0 615.0 fb0 c 0 w n forceBarrierHandler s
@@ -36,48 +36,48 @@ t 500.0 475.0 t14 c 0 w n {forceB.hit} n
 t 485.0 170.0 t12 c 0 w n {posB.hit} w
 p 600.0 550.0 W5 0 n
 a 540.0 20.0 n1 1 Worker
-e W5 w3 1 n
-e t14 W5 1 n
-e W4 t14 1 n
-e t14 FB0 1 n
-e M3 m1 1 n
-e t13 M3 1 n
-e t13 PB0 1 n
-e M2 t13 1 n
-e W2 w1 1 n
-e t12 W2 1 n
-e t12 0.757454931 53.81903009 PB0 0.0 67.2 1 n
-e W1 t12 1 n
-e L0 m2 5 e
-e w5 L0 1 n
-e FB1 w3 1 n
-e fb0 FB1 5 nw
-e FB0 fb0 5 nw
-e R0 w0 1 n
-e m0 R0 5 n
-e PB2 w1 1 n
-e PB1 m1 1 n
-e pb0 PB2 5 n
-e pb0 PB1 1 n
-e PB0 pb0 6 e
-e W7 w5 1 n
-e w4 W7 1 n
-e W6 w4 1 n
-e w3 W6 1 n
-e w5 0.06342681716 173.1704363 W1 0.9575349049 130.6220258 1 n
-e w2 W4 1 n
-e W3 w2 1 n
-e w1 W3 1 n
-e w0 W1 1 n
-e W0 w0 1 n
-e m3 0.3515917531 97.27330572 M2 0.6349342621 95.22058602 1 n
-e M5 m3 1 n
-e m2 M5 1 n
-e M4 m2 1 n
-e m1 M4 1 n
-e m0 M2 1 n
-e M1 m0 5 n
 e M0 m0 1 n
+e M1 m0 5 n
+e m0 M2 1 n
+e m1 M4 1 n
+e M4 m2 1 n
+e m2 M5 1 n
+e M5 m3 1 n
+e m3 0.3515917531 97.27330572 M2 0.6349342621 95.22058602 1 n
+e W0 w0 1 n
+e w0 W1 1 n
+e w1 W3 1 n
+e W3 w2 1 n
+e w2 W4 1 n
+e w5 0.06342681716 173.1704363 W1 0.9575349049 130.6220258 1 n
+e w3 W6 1 n
+e W6 w4 1 n
+e w4 W7 1 n
+e W7 w5 1 n
+e PB0 pb0 6 e
+e pb0 PB1 1 n
+e pb0 PB2 5 n
+e PB1 m1 1 n
+e PB2 w1 1 n
+e m0 R0 5 n
+e R0 w0 1 n
+e FB0 fb0 5 nw
+e fb0 FB1 5 nw
+e FB1 w3 1 n
+e w5 L0 1 n
+e L0 m2 5 e
+e W1 t12 1 n
+e t12 0.757454931 53.81903009 PB0 0.0 67.2 1 n
+e t12 W2 1 n
+e W2 w1 1 n
+e M2 t13 1 n
+e t13 PB0 1 n
+e t13 M3 1 n
+e M3 m1 1 n
+e t14 FB0 1 n
+e W4 t14 1 n
+e t14 W5 1 n
+e W5 w3 1 n
 h macro_version2
 
 

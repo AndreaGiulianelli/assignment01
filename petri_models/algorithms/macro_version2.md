@@ -6,7 +6,6 @@ Supponiamo un sistema in cui siano presenti 5 worker e il master.
 ## Common
 ```
 nWorkers = 5
-nBody = 10
 posB = Barrier(nWorkers + 1)
 forceB = Barrier(nWorkers)
 completitionL = Latch(nWorkers)
