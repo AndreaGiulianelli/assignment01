@@ -28,7 +28,7 @@ public class SimulationViewImpl implements SimulationView{
     }
 
     @Override
-    public void simulationEnd() {
+    public synchronized void simulationEnd() {
         this.viewer.simulationEnd();
     }
 }
