@@ -75,6 +75,10 @@ public class Master extends Thread{
                 // wait iteration completed on the latch
                 log("wait iteration to complete");
                 iterationCompletedLatch.await();
+
+                // increase the iteration count
+                this.model.incrementIterations();
+
                 log("iteration completed, save consistent results");
                 if(this.view != null) {
                     // save position in order to be consistent in the visualization
@@ -83,8 +87,6 @@ public class Master extends Thread{
                     log("send iteration to GUI");
                     this.view.update(posSafeCopy, this.model.getVirtualTime(), this.model.getIterationCount(), boundary);
                 }
-                // increase the iteration count
-                this.model.incrementIterations();
             }
         } catch (InterruptedException e) {}
         long t1 = System.currentTimeMillis();
