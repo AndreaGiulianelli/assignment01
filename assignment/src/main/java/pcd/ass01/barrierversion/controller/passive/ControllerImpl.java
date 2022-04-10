@@ -14,17 +14,17 @@ public class ControllerImpl implements Controller{
     }
 
     @Override
-    public void setView(SimulationView view) {
+    public synchronized void setView(SimulationView view) {
         this.view = view;
     }
 
     @Override
-    public void notifyStart() {
+    public synchronized void notifyStart() {
         this.startAndStopNotifier.notifyStart();
     }
 
     @Override
-    public void notifyStop() {
+    public synchronized void notifyStop() {
         this.startAndStopNotifier.notifyStop();
     }
 }

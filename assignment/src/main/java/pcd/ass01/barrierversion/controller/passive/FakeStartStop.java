@@ -5,16 +5,16 @@ package pcd.ass01.barrierversion.controller.passive;
  */
 public class FakeStartStop implements StartAndStopNotifier{
     @Override
-    public void startGateWait() throws InterruptedException {}
+    public synchronized void startGateWait() throws InterruptedException {}
 
     @Override
-    public boolean isRunning() {
+    public synchronized boolean isRunning() {
         return true;
     }
 
     @Override
-    public void notifyStart() {}
+    public synchronized void notifyStart() {}
 
     @Override
-    public void notifyStop() {}
+    public synchronized void notifyStop() {}
 }
